@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xadrez OO - Multiplayer</title>
+    <!-- CSS da Biblioteca do Tabuleiro -->
+    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Xadrez Orientado a Objetos</h1>
+        
+        <div class="game-container">
+            <!-- Área do Tabuleiro -->
+            <div id="boardContainer"></div>
+            
+            <!-- Painel de Informações -->
+            <div class="info-panel">
+                <div class="status-box">
+                    <strong>Status:</strong> <span id="status">Aguardando...</span>
+                </div>
+                <div class="history-box">
+                    <strong>Histórico de Jogadas:</strong>
+                    <div id="pgn"></div>
+                </div>
+                <button id="resetBtn">Nova Partida</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dependências -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+    
+    <!-- Seu Script OO -->
+    <script src="game.js"></script>
+</body>
+</html>
