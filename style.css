@@ -115,5 +115,33 @@ body {
 }
 
 /* Custom Board Highlights */
-.highlight-selected { box-shadow: inset 0 0 3px 3px yellow !important; }
-.highlight-hint { background-color: rgba(0, 0, 0, 0.1); border-radius: 50%; width: 20px !important; height: 20px !important; margin: 15px !important; box-shadow: inset 0 0 0 10px rgba(0,0,0,0.2) !important; }
+.highlight-selected {
+    box-shadow: inset 0 0 0 4px #81b64c !important; /* Um anel verde sólido nas bordas internas */
+    border-radius: 4px;
+}
+.highlight-hint {
+    background: none !important; /* Remove qualquer fundo antigo */
+    border: none !important;      /* Remove qualquer borda antiga */
+    position: relative;
+    border-radius: 50%;
+}
+
+.highlight-hint::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25%; /* Ponto pequeno, 25% do tamanho da casa */
+    height: 25%;
+    background-color: rgba(0, 0, 0, 0.3) !important; /* Preto muito translúcido, sutil */
+    border-radius: 50%;
+    pointer-events: none; /* Garante que você pode clicar na peça através dele */
+}
+
+.highlight-capture-hint {
+    background: none !important;
+    border: none !important;
+    box-shadow: inset 0 0 0 6px rgba(0, 0, 0, 0.2) !important; /* Anel fino e sutil */
+    border-radius: 50%;
+}
