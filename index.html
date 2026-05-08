@@ -15,47 +15,68 @@
             <ul class="nav-links">
                 <li class="active"><i class="fa-solid fa-pawn"></i> Jogar</li>
                 <li><i class="fa-solid fa-puzzle-piece"></i> Problemas</li>
+                <li><i class="fa-solid fa-graduation-cap"></i> Aprender</li>
             </ul>
         </nav>
 
         <main class="game-area">
             <div class="player-info opponent">
-                <img src="https://www.chess.com/bundles/web/images/noavatar_l.84a92b0d.gif" alt="Avatar">
-                <span>Adversário</span>
+                <div class="user-tag">
+                    <img src="https://www.chess.com/bundles/web/images/noavatar_l.84a92b0d.gif" alt="Avatar">
+                    <span id="opponentName">Adversário</span>
+                </div>
+                <div class="timer" id="timerOpponent">10:00</div>
             </div>
 
             <div id="boardContainer"></div>
 
             <div class="player-info user">
-                <img src="https://www.chess.com/bundles/web/images/noavatar_l.84a92b0d.gif" alt="Avatar">
-                <span>Jogador</span>
+                <div class="user-tag">
+                    <img src="https://www.chess.com/bundles/web/images/noavatar_l.84a92b0d.gif" alt="Avatar">
+                    <span id="userName">Jogador</span>
+                </div>
+                <div class="timer active-timer" id="timerUser">10:00</div>
             </div>
-            <div id="status" class="game-status">Aguardando início...</div>
+
+            <div id="status" class="game-status">Escolha um modo para começar</div>
         </main>
 
         <aside class="mode-panel">
-            <div class="panel-header"><h2>Jogue Xadrez</h2></div>
+            <div class="panel-header">
+                <h2>Jogue Xadrez</h2>
+            </div>
+
             <div class="mode-list">
                 <div class="mode-card" id="btnOnline">
                     <div class="icon yellow"><i class="fa-solid fa-bolt"></i></div>
                     <div class="text">
                         <h3>Jogue online</h3>
-                        <p>Partida via link (Pusher)</p>
+                        <p>Partida multiplayer via link</p>
                     </div>
                 </div>
+
                 <div class="mode-card" id="btnLocal">
                     <div class="icon brown"><i class="fa-solid fa-handshake"></i></div>
                     <div class="text">
                         <h3>Jogar com um amigo</h3>
-                        <p>1x1 no mesmo computador</p>
+                        <p>Partida local no mesmo computador</p>
                     </div>
                 </div>
             </div>
 
             <div id="multiplayerDetails" class="share-section" style="display: none;">
-                <p>Mande o link abaixo:</p>
+                <p>Link da Partida:</p>
                 <input type="text" id="shareUrl" readonly>
-                <button onclick="copyLink()" class="btn-copy">Copiar Link</button>
+                <button onclick="copyLink()" class="control-btn secondary">Copiar Link</button>
+            </div>
+
+            <div class="game-controls" id="gameControls" style="display: none;">
+                <button id="btnResign" class="control-btn">
+                    <i class="fa-solid fa-flag"></i> Desistir
+                </button>
+                <button id="btnNewGame" class="control-btn secondary">
+                    <i class="fa-solid fa-plus"></i> Nova Partida
+                </button>
             </div>
         </aside>
     </div>
@@ -64,6 +85,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
     <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
     <script src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
+    
     <script src="pawn-promotion.js"></script>
     <script src="chess-network.js"></script>
     <script src="game.js"></script>

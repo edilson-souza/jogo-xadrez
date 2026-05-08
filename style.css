@@ -6,6 +6,8 @@
     --text-main: #bababa;
     --green-accent: #81b64c;
     --yellow-accent: #f5c518;
+    --white-board: #eeeed2;
+    --green-board: #769656;
 }
 
 body {
@@ -22,7 +24,7 @@ body {
     height: 100vh;
 }
 
-/* Sidebar */
+/* --- Sidebar (Coluna Esquerda) --- */
 .side-nav {
     background: var(--bg-side);
     padding: 20px 15px;
@@ -42,7 +44,7 @@ body {
 }
 .nav-links li.active { background: #312e2b; color: white; }
 
-/* Game Area */
+/* --- Área do Jogo (Coluna Central) --- */
 .game-area {
     display: flex;
     flex-direction: column;
@@ -50,25 +52,52 @@ body {
     align-items: center;
     padding: 20px;
 }
+
 #boardContainer { width: 550px; max-width: 80vh; }
+
+/* Informações dos Jogadores e Relógios */
 .player-info {
     width: 550px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: space-between;
     padding: 10px 0;
     font-weight: 600;
 }
+
+.user-tag { display: flex; align-items: center; gap: 10px; }
 .player-info img { width: 35px; border-radius: 4px; }
+
+.timer {
+    background: #312e2b;
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 1.3rem;
+    font-weight: bold;
+    min-width: 80px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.active-timer {
+    background: #fff !important;
+    color: #000 !important;
+}
+
 .game-status { margin-top: 15px; color: var(--text-main); font-size: 0.9rem; }
 
-/* Right Panel */
+/* --- Painel Lateral (Coluna Direita) --- */
 .mode-panel {
     background: var(--bg-panel);
     padding: 20px;
     border-left: 1px solid #333;
 }
+
 .panel-header h2 { text-align: center; margin-bottom: 30px; font-size: 1.5rem; }
+
+/* Cartões de Modo de Jogo */
 .mode-card {
     background: var(--bg-card);
     display: flex;
@@ -79,6 +108,7 @@ body {
     border-bottom: 4px solid rgba(0,0,0,0.2);
     transition: transform 0.1s;
 }
+
 .mode-card:hover { background: #45413d; transform: translateY(-2px); }
 .mode-card .icon { font-size: 2.2rem; margin-right: 18px; display: flex; align-items: center; }
 .icon.yellow { color: var(--yellow-accent); }
@@ -86,44 +116,72 @@ body {
 .mode-card h3 { margin: 0; font-size: 1.1rem; }
 .mode-card p { margin: 5px 0 0; font-size: 0.85rem; color: var(--text-main); line-height: 1.3; }
 
-/* Share Section */
+/* Seção de Compartilhamento Link Online */
 .share-section {
     background: #1a1a1a;
     padding: 20px;
     border-radius: 8px;
     margin-top: 20px;
 }
+.share-section p { font-size: 0.9rem; margin-bottom: 10px; }
 .share-section input {
     width: 100%;
     padding: 10px;
     background: #000;
     border: 1px solid #444;
     color: var(--green-accent);
-    margin: 10px 0;
+    margin-bottom: 10px;
     border-radius: 4px;
-    font-family: monospace;
-}
-.btn-copy {
-    width: 100%;
-    background: var(--green-accent);
-    border: none;
-    padding: 12px;
-    border-radius: 4px;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
+    box-sizing: border-box;
 }
 
-/* Custom Board Highlights */
+/* Botões de Controle (Desistir/Novo Jogo) */
+.game-controls {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.control-btn {
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #45413d;
+    color: #bababa;
+    font-size: 1rem;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.control-btn:hover { background: #555; color: #fff; }
+.btn-copy, .control-btn.secondary { 
+    background: var(--green-accent) !important; 
+    color: white !important; 
+}
+
+/* --- Destaques do Tabuleiro (Estilo Chess.com) --- */
+
+/* Cor das Casas do Tabuleiro (Verde Clássico) */
+.white-1e1d7 { background-color: var(--white-board) !important; }
+.black-3c85d { background-color: var(--green-board) !important; }
+
+/* Peça selecionada */
 .highlight-selected {
-    box-shadow: inset 0 0 0 4px #81b64c !important; /* Um anel verde sólido nas bordas internas */
+    box-shadow: inset 0 0 0 4px var(--green-accent) !important;
     border-radius: 4px;
 }
+
+/* Dicas de Movimento: Pontos sutis */
 .highlight-hint {
-    background: none !important; /* Remove qualquer fundo antigo */
-    border: none !important;      /* Remove qualquer borda antiga */
+    background: none !important;
+    border: none !important;
     position: relative;
-    border-radius: 50%;
 }
 
 .highlight-hint::after {
@@ -132,16 +190,16 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 25%; /* Ponto pequeno, 25% do tamanho da casa */
+    width: 25%;
     height: 25%;
-    background-color: rgba(0, 0, 0, 0.3) !important; /* Preto muito translúcido, sutil */
+    background-color: rgba(0, 0, 0, 0.25) !important;
     border-radius: 50%;
-    pointer-events: none; /* Garante que você pode clicar na peça através dele */
 }
 
+/* Anel de Captura */
 .highlight-capture-hint {
     background: none !important;
     border: none !important;
-    box-shadow: inset 0 0 0 6px rgba(0, 0, 0, 0.2) !important; /* Anel fino e sutil */
+    box-shadow: inset 0 0 0 6px rgba(0, 0, 0, 0.15) !important;
     border-radius: 50%;
 }
