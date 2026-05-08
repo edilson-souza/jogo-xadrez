@@ -60,3 +60,11 @@ button {
 }
 
 button:hover { background: #e74c3c; }
+
+.promo-option { 
+    width: 60px; 
+    height: 60px; 
+    cursor: pointer; 
+    transition: all 0.2s; 
+    object-fit: contain; 
+}

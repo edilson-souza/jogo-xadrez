@@ -195,7 +195,6 @@ class ChessGame {
         }
 
         this.statusEl.innerText = status;
-        this.pgnEl.innerText = this.logic.pgn();
     }
 
     reset() {
