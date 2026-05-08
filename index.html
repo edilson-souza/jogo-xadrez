@@ -4,33 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="image/png" sizes="96x96" rel="icon" href="imgs/icons8-cavalo-94.png">
-    <title> Xadrez </title>
-    <!-- CSS da Biblioteca do Tabuleiro -->
+    <title>Xadrez Online</title>
     <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <div class="game-container">
-            <!-- Área do Tabuleiro -->
             <div id="boardContainer"></div>
             
-            <!-- Painel de Informações -->
             <div class="info-panel">
                 <div class="status-box">
-                    <strong>Status:</strong> <span id="status">Aguardando...</span>
+                    <strong>Status:</strong> <span id="status">Conectando...</span>
                 </div>
+                <div id="roomInfo" class="room-display"></div>
                 <button id="resetBtn">Nova Partida</button>
             </div>
         </div>
     </div>
 
-    <!-- Dependências -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
     <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+    <script src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
     
-    <!-- Seu Script OO -->
+    <script src="pawn-promotion.js"></script>
+    <script src="chess-network.js"></script>
     <script src="game.js"></script>
 </body>
 </html>
