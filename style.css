@@ -11,16 +11,30 @@ body {
 
 .container { text-align: center; }
 
-.game-container {
-    display: flex;
-    gap: 30px;
-    background: #1e1e1e;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+@media (min-width: 768px) {
+    .game-container {
+        flex-direction: row;
+        padding: 20px;
+    }
+    
+    #boardContainer {
+        width: 450px;
+    }
 }
 
-#boardContainer { width: 450px; }
+.game-container {
+    display: flex;
+    flex-direction: column; /* Coloca o painel de status abaixo do tabuleiro no celular */
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+#boardContainer { 
+    width: 90vw; /* Ocupa 90% da largura da tela em dispositivos móveis */
+    max-width: 450px; /* Mas não passa de 450px em telas de PC */
+    margin: 0 auto;
+}
 
 .info-panel {
     width: 250px;
