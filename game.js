@@ -24,23 +24,25 @@ class PawnPromotion {
         document.head.appendChild(style);
     }
 
+    // No game.js, dentro da classe PawnPromotion:
+
     createModal() {
-        this.modal = document.createElement('div');
-        this.modal.id = 'promoModal';
-        this.modal.innerHTML = `
-            <div id="promoContent">
-                <h3>Escolha a peça para promover</h3>
-                <div class="promo-options">
-                    <img src="${this.getPieceUrl('q')}" class="promo-option" data-piece="q" alt="Rainha">
-                    <img src="${this.getPieceUrl('r')}" class="promo-option" data-piece="r" alt="Torre">
-                    <img src="${this.getPieceUrl('b')}" class="promo-option" data-piece="b" alt="Bispo">
-                    <img src="${this.getPieceUrl('n')}" class="promo-option" data-piece="n" alt="Cavalo">
-                </div>
+            this.modal = document.createElement('div');
+            this.modal.id = 'promoModal';
+            this.modal.innerHTML = `
+        <div id="promoContent">
+            <h3>Escolha a peça para promover</h3>
+            <div class="promo-options">
+                <img class="promo-option" data-piece="q" alt="Rainha">
+                <img class="promo-option" data-piece="r" alt="Torre">
+                <img class="promo-option" data-piece="b" alt="Bispo">
+                <img class="promo-option" data-piece="n" alt="Cavalo">
             </div>
-        `;
-        document.body.appendChild(this.modal);
-        this.addEventListeners();
-    }
+        </div>
+    `;
+    document.body.appendChild(this.modal);
+    this.addEventListeners();
+}
 
     getPieceUrl(type) {
         // Usa as mesmas imagens padrão que o tabuleiro
@@ -58,8 +60,16 @@ class PawnPromotion {
     }
 
     open() {
-        this.selectedPiece = null;
-        this.modal.style.display = 'block';
+    this.selectedPiece = null;
+    
+    // Atualiza as imagens para a cor do jogador atual antes de mostrar
+    const turn = this.game.logic.turn(); 
+    this.modal.querySelectorAll('.promo-option').forEach(img => {
+        const piece = img.dataset.piece;
+        img.src = `https://chessboardjs.com/img/chesspieces/wikipedia/${turn}${piece.toUpperCase()}.png`;
+    });
+
+    this.modal.style.display = 'block';
     }
 
     close() {
