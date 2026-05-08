@@ -3,31 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link type="image/png" sizes="96x96" rel="icon" href="imgs/icons8-cavalo-94.png">
     <title>Xadrez Online</title>
     <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="game-container">
-            <div id="boardContainer"></div>
-            
-            <div class="info-panel">
-                <div class="status-box">
-                    <strong>Status:</strong> <span id="status">Conectando...</span>
-                </div>
-                <div id="roomInfo" class="room-display"></div>
-                <button id="resetBtn">Nova Partida</button>
+    <div class="main-layout">
+        <nav class="side-nav">
+            <div class="logo">Chess<span>.com</span></div>
+            <ul class="nav-links">
+                <li class="active"><i class="fa-solid fa-pawn"></i> Jogar</li>
+                <li><i class="fa-solid fa-puzzle-piece"></i> Problemas</li>
+            </ul>
+        </nav>
+
+        <main class="game-area">
+            <div class="player-info opponent">
+                <img src="https://www.chess.com/bundles/web/images/noavatar_l.84a92b0d.gif" alt="Avatar">
+                <span>Adversário</span>
             </div>
-        </div>
+
+            <div id="boardContainer"></div>
+
+            <div class="player-info user">
+                <img src="https://www.chess.com/bundles/web/images/noavatar_l.84a92b0d.gif" alt="Avatar">
+                <span>Jogador</span>
+            </div>
+            <div id="status" class="game-status">Aguardando início...</div>
+        </main>
+
+        <aside class="mode-panel">
+            <div class="panel-header"><h2>Jogue Xadrez</h2></div>
+            <div class="mode-list">
+                <div class="mode-card" id="btnOnline">
+                    <div class="icon yellow"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="text">
+                        <h3>Jogue online</h3>
+                        <p>Partida via link (Pusher)</p>
+                    </div>
+                </div>
+                <div class="mode-card" id="btnLocal">
+                    <div class="icon brown"><i class="fa-solid fa-handshake"></i></div>
+                    <div class="text">
+                        <h3>Jogar com um amigo</h3>
+                        <p>1x1 no mesmo computador</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="multiplayerDetails" class="share-section" style="display: none;">
+                <p>Mande o link abaixo:</p>
+                <input type="text" id="shareUrl" readonly>
+                <button onclick="copyLink()" class="btn-copy">Copiar Link</button>
+            </div>
+        </aside>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
     <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
     <script src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
-    
     <script src="pawn-promotion.js"></script>
     <script src="chess-network.js"></script>
     <script src="game.js"></script>

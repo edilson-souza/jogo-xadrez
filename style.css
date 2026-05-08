@@ -1,105 +1,119 @@
+:root {
+    --bg-dark: #262421;
+    --bg-side: #211f1c;
+    --bg-panel: #2b2926;
+    --bg-card: #383531;
+    --text-main: #bababa;
+    --green-accent: #81b64c;
+    --yellow-accent: #f5c518;
+}
+
 body {
-    background-color: #121212;
-    color: #e0e0e0;
-    font-family: 'Segoe UI', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    background-color: var(--bg-dark);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
     margin: 0;
+    overflow: hidden;
 }
 
-.container { text-align: center; }
-
-@media (min-width: 768px) {
-    .game-container {
-        flex-direction: row;
-        padding: 20px;
-    }
-    
-    #boardContainer {
-        width: 450px;
-    }
+.main-layout {
+    display: grid;
+    grid-template-columns: 160px 1fr 360px;
+    height: 100vh;
 }
 
-.game-container {
+/* Sidebar */
+.side-nav {
+    background: var(--bg-side);
+    padding: 20px 15px;
+}
+.logo { font-weight: bold; font-size: 1.4rem; margin-bottom: 40px; }
+.logo span { color: var(--text-main); font-weight: normal; }
+.nav-links { list-style: none; padding: 0; }
+.nav-links li { 
+    padding: 12px; 
+    color: var(--text-main); 
+    cursor: pointer; 
+    border-radius: 4px;
+    margin-bottom: 8px;
     display: flex;
-    flex-direction: column; /* Coloca o painel de status abaixo do tabuleiro no celular */
     align-items: center;
-    gap: 20px;
-    padding: 10px;
+    gap: 12px;
 }
+.nav-links li.active { background: #312e2b; color: white; }
 
-#boardContainer { 
-    width: 90vw; /* Ocupa 90% da largura da tela em dispositivos móveis */
-    max-width: 450px; /* Mas não passa de 450px em telas de PC */
-    margin: 0 auto;
-}
-
-.info-panel {
-    width: 250px;
+/* Game Area */
+.game-area {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
+#boardContainer { width: 550px; max-width: 80vh; }
+.player-info {
+    width: 550px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    font-weight: 600;
+}
+.player-info img { width: 35px; border-radius: 4px; }
+.game-status { margin-top: 15px; color: var(--text-main); font-size: 0.9rem; }
 
-.status-box {
-    background: #2d2d2d;
-    padding: 15px;
+/* Right Panel */
+.mode-panel {
+    background: var(--bg-panel);
+    padding: 20px;
+    border-left: 1px solid #333;
+}
+.panel-header h2 { text-align: center; margin-bottom: 30px; font-size: 1.5rem; }
+.mode-card {
+    background: var(--bg-card);
+    display: flex;
+    padding: 18px;
     border-radius: 8px;
-    border-left: 5px solid #27ae60;
-    margin-bottom: 20px;
-}
-
-.history-box {
-    flex-grow: 1;
-    background: #121212;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 0.85em;
-    overflow-y: auto;
-    max-height: 250px;
-    color: #888;
-}
-
-button {
-    background: #c0392b;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 6px;
+    margin-bottom: 15px;
     cursor: pointer;
-    font-weight: bold;
+    border-bottom: 4px solid rgba(0,0,0,0.2);
+    transition: transform 0.1s;
+}
+.mode-card:hover { background: #45413d; transform: translateY(-2px); }
+.mode-card .icon { font-size: 2.2rem; margin-right: 18px; display: flex; align-items: center; }
+.icon.yellow { color: var(--yellow-accent); }
+.icon.brown { color: #a68d75; }
+.mode-card h3 { margin: 0; font-size: 1.1rem; }
+.mode-card p { margin: 5px 0 0; font-size: 0.85rem; color: var(--text-main); line-height: 1.3; }
+
+/* Share Section */
+.share-section {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
     margin-top: 20px;
 }
-
-button:hover { background: #e74c3c; }
-
-.promo-option { 
-    width: 60px; 
-    height: 60px; 
-    cursor: pointer; 
-    transition: all 0.2s; 
-    object-fit: contain; 
+.share-section input {
+    width: 100%;
+    padding: 10px;
+    background: #000;
+    border: 1px solid #444;
+    color: var(--green-accent);
+    margin: 10px 0;
+    border-radius: 4px;
+    font-family: monospace;
 }
-
-/* No seu style.css ou no createStyle() do game.js */
-
-/* Destaque para onde a peça pode ir */
-.highlight-hint {
-    box-shadow: inset 0 0 5px 5px rgba(255, 255, 255, 0.2);
+.btn-copy {
+    width: 100%;
+    background: var(--green-accent);
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
     cursor: pointer;
 }
 
-/* Opcional: Um círculo sutil no centro da casa vazia */
-.highlight-hint:not(:has(img))::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 50%;
-}
+/* Custom Board Highlights */
+.highlight-selected { box-shadow: inset 0 0 3px 3px yellow !important; }
+.highlight-hint { background-color: rgba(0, 0, 0, 0.1); border-radius: 50%; width: 20px !important; height: 20px !important; margin: 15px !important; box-shadow: inset 0 0 0 10px rgba(0,0,0,0.2) !important; }
