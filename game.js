@@ -5,6 +5,10 @@ class ChessGame {
         this.statusEl = document.getElementById(statusId);
         this.sourceSquare = null;
         this.pendingMove = null;
+        this.updateAvatars = function(userImgUrl, opponentImgUrl) {
+        if(userImgUrl) document.getElementById('userAvatar').src = userImgUrl;
+        if(opponentImgUrl) document.getElementById('opponentAvatar').src = opponentImgUrl;
+     };
         
         // Configurações de Tempo (10 minutos padrão)
         this.timers = { w: 600, b: 600 }; 
