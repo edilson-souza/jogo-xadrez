@@ -203,3 +203,80 @@ body {
     box-shadow: inset 0 0 0 6px rgba(0, 0, 0, 0.15) !important;
     border-radius: 50%;
 }
+
+/* --- RESPONSIVIDADE PARA CELULAR --- */
+
+@media (max-width: 900px) {
+    .main-layout {
+        display: flex;
+        flex-direction: column; /* Empilha tudo verticalmente */
+        height: auto;
+        overflow-y: auto;
+    }
+
+    /* Ajuste da Sidebar (Menu) */
+    .side-nav {
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .logo { margin-bottom: 0; font-size: 1.1rem; }
+    
+    .nav-links { 
+        display: flex; 
+        gap: 10px; 
+    }
+    
+    .nav-links li { 
+        margin-bottom: 0; 
+        padding: 5px 10px; 
+        font-size: 0.8rem;
+    }
+
+    /* Ajuste da Área do Jogo */
+    .game-area {
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #boardContainer { 
+        width: 95vw; /* Tabuleiro ocupa quase toda a largura da tela */
+        max-width: 400px; /* Mas não fica gigante em tablets */
+    }
+
+    .player-info {
+        width: 95vw;
+        max-width: 400px;
+    }
+
+    .timer {
+        font-size: 1.1rem;
+        min-width: 60px;
+    }
+
+    /* Ajuste do Painel de Modos */
+    .mode-panel {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid #333;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .mode-card {
+        padding: 12px;
+    }
+
+    .mode-card .icon {
+        font-size: 1.5rem;
+    }
+
+    .mode-card h3 {
+        font-size: 1rem;
+    }
+}

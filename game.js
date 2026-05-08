@@ -13,10 +13,12 @@ class ChessGame {
         const urlParams = new URLSearchParams(window.location.search);
         // Se houver "room" na URL, assume que é o convidado (Pretas)
         this.playerColor = urlParams.has('room') ? 'b' : 'w';
-
+        setTimeout(() => { this.board.resize(); }, 200);
         this.promoter = new PawnPromotion(this, this.executePromotion.bind(this));
         this.network = new ChessNetwork(this);
-        
+        window.addEventListener('resize', () => {
+    this.board.resize();
+    });
         this.init();
     }
     
